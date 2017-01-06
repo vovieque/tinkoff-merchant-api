@@ -1,0 +1,23 @@
+{
+  "name": "tinkoff-merchant-api",
+  "version": "1.0.0",
+  "description": "Tinkoff Merchant API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rakchaev/tinkoff-merchant-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rakchaev/tinkoff-merchant-api/issues"
+  },
+  "homepage": "https://github.com/rakchaev/tinkoff-merchant-api#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request": "^2.79.0"
+  }
+}
