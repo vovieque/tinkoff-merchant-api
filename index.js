@@ -23,29 +23,17 @@ class TinkoffMerchantAPI {
 
     /**
      * Initialize the payment
-     * @param {Object} params Params for Init method except TerminalKey and Token
+     * @param {Object} params Params for Init method except TerminalKey and Token.
+     *     And DATA should be object with DATA-params.
      * @returns {Promise}
      */
     init(params) {
-        return this.requestMethod('Init', params);
-    }
-
-    /**
-     * Initialize the payment
-     * @param {Object} params Params for Init method except TerminalKey and Token
-     * @returns {Promise}
-     */
-    init(params) {
-        return this.requestMethod('Init', params);
-    }
-
-    /**
-     * Initialize the payment
-     * @param {Object} params Params for Init method except TerminalKey and Token
-     * @returns {Promise}
-     */
-    init(params) {
-        return this.requestMethod('Init', params);
+        const dataParamValue = _.toPairs(params.DATA)
+            .map(pair => `${pair[0]}=${encodeURIComponent(pair[1])}`)
+            .join('|');
+        const initParams = Object.assign({}, params);
+        initParams.DATA = dataParamValue;
+        return this.requestMethod('Init', initParams);
     }
 
     /**

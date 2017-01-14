@@ -2,6 +2,12 @@
 
 Node.js implementation of [Tinkoff Merchant API](https://oplata.tinkoff.ru/documentation/).
 
+## Installation
+
+```
+npn i tinkoff-merchant-api
+```
+
 ## How to use
 
 ```js
@@ -10,9 +16,13 @@ const bankApi = new TinkoffMerchantAPI(process.env.TINKOFF_TERMINAL_KEY, process
 
 // Pass params for API method except TerminalKey and Token (they will be added automatically)
 bankApi.init({
-    Amount: 200000,
-    OrderId: 123,
-    DATA: 'Email=user@ya.ru'
+    Amount: '200000',
+    OrderId: '123',
+    // For method Init: DATA should be object with DATA-params
+    DATA: {
+        Email: 'user@ya.ru',
+        Phone: '+71234567890'
+    }
 }).then(res => {
     console.log(res)
 }).catch(err => {
@@ -20,10 +30,12 @@ bankApi.init({
 });
 ```
 
+You can use another implemented [methods](index.js).
+
 Also you can check if notification request is valid
 
 ```js
-// Use Express req or built express-like object with ip and request params:
+// Use Express req object or your own express-like object with ip and request params:
 // const req = {
 //     ip: '91.194.226.1',
 //     body: {
