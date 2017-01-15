@@ -18,7 +18,7 @@ const bankApi = new TinkoffMerchantAPI(process.env.TINKOFF_TERMINAL_KEY, process
 bankApi.init({
     Amount: '200000',
     OrderId: '123',
-    // For method Init: DATA should be object with DATA-params
+    // For method Init: DATA should be object with DATA-params (DATA will be serialized (including urlencoding of values) automatically)
     DATA: {
         Email: 'user@ya.ru',
         Phone: '+71234567890'
