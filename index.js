@@ -129,7 +129,9 @@ class TinkoffMerchantAPI {
      */
     checkNotificationRequest(req) {
         const notificationIpStart = '91.194.226.';
-        if (!req.ip.startsWith(notificationIpStart)) {
+        // Support ipv6 from ipv4 (like ::ffff:91.194.226.1)
+        const ipv4 = req.ip.replace(/^.*:/, '');
+        if (!ipv4.startsWith(notificationIpStart)) {
             return false;
         }
         if (req.body.TerminalKey !== this.terminalKey) {
