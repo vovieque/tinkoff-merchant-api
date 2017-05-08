@@ -125,26 +125,37 @@ class TinkoffMerchantAPI {
      * @param {Object} req Express (or express-like) request of notification
      * @param {String} req.ip Request IP
      * @param {Object} req.body Params of notification request
-     * @returns {Boolean}
+     * @returns {Object} result
      */
     checkNotificationRequest(req) {
         const notificationIpStart = '91.194.226.';
         // Support ipv6 from ipv4 (like ::ffff:91.194.226.1)
         const ipv4 = req.ip.replace(/^.*:/, '');
         if (!ipv4.startsWith(notificationIpStart)) {
-            return false;
+            return {
+                success: false,
+                error: `Invalid request ip: ${req.ip}`
+            };
         }
         if (req.body.TerminalKey !== this.terminalKey) {
-            return false;
+            return {
+                success: false,
+                error: `Invalid request TerminalKey: ${req.body.TerminalKey}`
+            };
         }
 
         const tokenParams = Object.assign({}, req.body);
         delete tokenParams.Token;
         if (req.body.Token !== this.getToken(tokenParams)) {
-            return false;
+            return {
+                success: false,
+                error: `Invalid request Token`
+            };
         }
 
-        return true;
+        return {
+            success: true
+        };
     }
 }
 

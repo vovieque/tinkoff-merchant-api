@@ -52,6 +52,6 @@ Also you can check if notification request is valid
 //         "Token":"239ea18cfd5dfcc72423778c0634bcf90987af8600fc835b8f7d7657cc95c69b"
 //     }
 // };
-const isValidNotificationRequest = bankApi.checkNotificationRequest(req);
+const isValidNotificationRequest = bankApi.checkNotificationRequest(req).success;
 console.log(isValidNotificationRequest);
 ```
