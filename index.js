@@ -91,7 +91,7 @@ class TinkoffMerchantAPI {
                 form: methodParams,
                 json: true,
                 gzip: true,
-                timeout: 5000
+                timeout: 25000
             }, (err, response, body) => {
                 if (err) {
                     reject(err);
