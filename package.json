@@ -1,6 +1,6 @@
 {
   "name": "tinkoff-merchant-api",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Tinkoff Merchant API",
   "main": "index.js",
   "scripts": {
