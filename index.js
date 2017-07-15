@@ -18,22 +18,16 @@ class TinkoffMerchantAPI {
      * Url for API
      */
     static get apiUrl() {
-        return 'https://securepay.tinkoff.ru/rest';
+        return 'https://securepay.tinkoff.ru/v2/';
     }
 
     /**
      * Initialize the payment
-     * @param {Object} params Params for Init method except TerminalKey and Token.
-     *     And DATA should be object with DATA-params.
+     * @param {Object} params Params for Init method except TerminalKey and Token
      * @returns {Promise}
      */
     init(params) {
-        const dataParamValue = _.toPairs(params.DATA)
-            .map(pair => `${pair[0]}=${encodeURIComponent(pair[1])}`)
-            .join('|');
-        const initParams = Object.assign({}, params);
-        initParams.DATA = dataParamValue;
-        return this.requestMethod('Init', initParams);
+        return this.requestMethod('Init', params);
     }
 
     /**
@@ -79,7 +73,7 @@ class TinkoffMerchantAPI {
      * @returns {Promise}
      */
     requestMethod(methodName, params) {
-        const methodUrl = `${this.constructor.apiUrl}/${methodName}`;
+        const methodUrl = `${this.constructor.apiUrl}${methodName}`;
         const methodParams = Object.assign({}, params);
         methodParams.TerminalKey = this.terminalKey;
         methodParams.Token = this.getToken(methodParams);
@@ -88,7 +82,7 @@ class TinkoffMerchantAPI {
             request({
                 uri: methodUrl,
                 method: 'POST',
-                form: methodParams,
+                body: methodParams,
                 json: true,
                 gzip: true,
                 timeout: 25000
