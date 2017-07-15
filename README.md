@@ -1,6 +1,6 @@
 # Tinkoff Merchant API
 
-Node.js implementation of [Tinkoff Merchant API](https://oplata.tinkoff.ru/documentation/).
+Node.js implementation of [Tinkoff Merchant API v2](https://oplata.tinkoff.ru/documentation/).
 
 ## Installation
 
@@ -18,10 +18,31 @@ const bankApi = new TinkoffMerchantAPI(process.env.TINKOFF_TERMINAL_KEY, process
 bankApi.init({
     Amount: '200000',
     OrderId: '123',
-    // For method Init: DATA should be object with DATA-params (DATA will be serialized (including urlencoding of values) automatically)
     DATA: {
         Email: 'user@ya.ru',
         Phone: '+71234567890'
+    },
+    Receipt: {
+        Email: 'user@ya.ru',
+        Phone: '+71234567890',
+        Taxation: 'osn',
+        Items: [
+            {
+                Name: 'Наименование товара 1',
+                Price: 100.00,
+                Quantity: 1.00,
+                Amount: 100.00,
+                Tax: 'vat10',
+                Ean13: '0123456789'
+            },
+            {
+                Name: 'Наименование товара 2',
+                Price: 200.00,
+                Quantity: 2.00,
+                Amount: 400.00,
+                Tax: 'vat18'
+            }
+        ]
     }
 }).then(res => {
     console.log(res)
