@@ -76,3 +76,8 @@ Also you can check if notification request is valid
 const isValidNotificationRequest = bankApi.checkNotificationRequest(req).success;
 console.log(isValidNotificationRequest);
 ```
+### Debug
+```
+DEBUG=tinkoff-merchant
+```
+Also see [debug](https://www.npmjs.com/package/debug) module

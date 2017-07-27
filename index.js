@@ -1,3 +1,4 @@
+const debug = require('debug')('tinkoff-merchant');
 const crypto = require('crypto');
 const _ = require('lodash');
 const request = require('request');
@@ -12,6 +13,8 @@ class TinkoffMerchantAPI {
     constructor(terminalKey, secretKey) {
         this.terminalKey = terminalKey;
         this.secretKey = secretKey;
+
+        debug(`created for ${this.terminalKey}`);
     }
 
     /**
@@ -79,6 +82,8 @@ class TinkoffMerchantAPI {
         methodParams.Token = this.getToken(methodParams);
 
         const requestPromise = new Promise((resolve, reject) => {
+            debug('send \'%s\' with %o', methodName, methodParams);
+
             request({
                 uri: methodUrl,
                 method: 'POST',
