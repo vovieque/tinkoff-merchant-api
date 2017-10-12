@@ -5,7 +5,7 @@ Node.js implementation of [Tinkoff Merchant API v2](https://oplata.tinkoff.ru/do
 ## Installation
 
 ```
-npn i tinkoff-merchant-api
+npm i tinkoff-merchant-api
 ```
 
 ## How to use
